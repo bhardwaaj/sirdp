@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celebrating 10 Years of Excellence - DP Sir</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Cabin:wght@400;500;600;700&family=Righteous&family=Pacifico&family=Fredoka+One&family=Bungee+Shade&family=Bungee&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.39.0/tsparticles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        /* Notification Styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            z-index: 9999;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            background-color: #4BB543;
+            color: white;
+        }
+        
+        .notification.error {
+            background-color: #FF3333;
+            color: white;
+        }
+        
+        .notification i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .notification .close-btn {
+            margin-left: 15px;
+            color: white;
+            background: transparent;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .notification .close-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            width: 120px;
+            height: 120px;
+            position: relative;
+        }
+
+        .loader:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid transparent;
+            border-top-color: #ff2e63;
+            border-bottom-color: #08d9d6;
+            animation: spin 1.5s linear infinite;
+        }
+
+        .loader:after {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border-radius: 50%;
+            border: 5px solid transparent;
+            border-left-color: #f706cf;
+            border-right-color: #00ff9f;
+            animation: spin 1s linear infinite reverse;
+        }
+
+        .loader-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Righteous', cursive;
+            font-size: 20px;
+            color: #fff;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Particles Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress"></div>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader-text">10 YEARS</div>
+        </div>
+    </div>
+
+    <!-- Notification Component -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle" id="notification-icon"></i>
+        <span id="notification-message">Your message has been sent successfully!</span>
+        <button class="close-btn" onclick="closeNotification()" aria-label="Close notification">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Header Section -->
+    <header id="home">
+        <!-- Top Navigation Bar -->
+        <div class="top-navbar">
+            <a href="#" class="nav-logo">DP<span>10</span></a>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#timeline">Timeline</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+            </ul>
+            <a href="#gallery" class="nav-button">VIEW GALLERY</a>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+        
+        <!-- Video Background -->
+        <div class="video-background">
+            <video autoplay loop muted playsinline>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-particles-slowly-floating-in-a-dark-room-48863-large.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        
+        <div class="hero">
+            <div class="hero-content">
+                <img src="images/main.png" alt="DP Sir's Profile" class="profile-photo">
+                <h1 class="glowing-text">Durga Prasad Sharma</h1>
+                <p class="subtitle">Celebrating 10 Years of Excellence</p>
+                <div class="scroll-down">
+                    <a href="#timeline">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="section">
+        <div class="container">
+            <h2 class="section-title char-reveal">Career Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item scroll-left delay-100">
+                    <div class="timeline-content">
+                        <h3>2013</h3>
+                        <p>Started career at Tekno Point as a web developer, eager to learn and grow in the digital world.</p>
+                    </div>
+                </div>
+                <div class="timeline-item scroll-right delay-200">
+                    <div class="timeline-content">
+                        <h3>2015</h3>
+                        <p>Promoted to Senior Developer, taking on more challenging projects and mentoring junior colleagues.</p>
+                    </div>
+                </div>
+                <div class="timeline-item scroll-left delay-300">
+                    <div class="timeline-content">
+                        <h3>2017</h3>
+                        <p>Advanced to Team Lead, guiding a talented group of developers and ensuring project success.</p>
+                    </div>
+                </div>
+                <div class="timeline-item scroll-right delay-400">
+                    <div class="timeline-content">
+                        <h3>2019</h3>
+                        <p>Became Project Manager, overseeing multiple development teams and coordinating complex projects.</p>
+                    </div>
+                </div>
+                <div class="timeline-item scroll-left delay-500">
+                    <div class="timeline-content">
+                        <h3>2021</h3>
+                        <p>Promoted to Technology Director, implementing innovative solutions and strategic planning.</p>
+                    </div>
+                </div>
+                <div class="timeline-item scroll-right delay-600">
+                    <div class="timeline-content">
+                        <h3>2023</h3>
+                        <p>Celebrating 10 incredible years of growth, innovation, and leadership at Tekno Point!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quotes Section -->
+    <section class="quotes-section">
+        <div class="container">
+            <h2 class="section-title">Tributes & Wishes for DP Sir</h2>
+            <div class="quotes-container">
+                <div class="quotes-slider">
+                    <div class="quote active">
+                        <div class="quote-content">
+                            <i class="fas fa-quote-left quote-icon"></i>
+                            <p>"Leadership is not about being the best, but about making everyone else better. Your guidance has elevated our entire team."</p>
+                            <cite>- Team Member</cite>
+                            <i class="fas fa-quote-right quote-icon"></i>
+                        </div>
+                    </div>
+                    <div class="quote">
+                        <div class="quote-content">
+                            <i class="fas fa-quote-left quote-icon"></i>
+                            <p>"10 years, 120 months, 520 weeks, 3650 days of making work brighter and better — Cheers to many more!"</p>
+                            <cite>- Senior Developer</cite>
+                            <i class="fas fa-quote-right quote-icon"></i>
+                        </div>
+                    </div>
+                    <div class="quote">
+                        <div class="quote-content">
+                            <i class="fas fa-quote-left quote-icon"></i>
+                            <p>"A decade of hustle, heart, and high standards — here's to another 10 years of greatness!"</p>
+                            <cite>- Project Manager</cite>
+                            <i class="fas fa-quote-right quote-icon"></i>
+                        </div>
+                    </div>
+                    <div class="quote">
+                        <div class="quote-content">
+                            <i class="fas fa-quote-left quote-icon"></i>
+                            <p>"It's not just 10 years of work, but 10 years of inspiring excellence! We're thrilled to celebrate this milestone with you."</p>
+                            <cite>- Technical Lead</cite>
+                            <i class="fas fa-quote-right quote-icon"></i>
+                        </div>
+                    </div>
+                    <div class="quote">
+                        <div class="quote-content">
+                            <i class="fas fa-quote-left quote-icon"></i>
+                            <p>"Time flies when you're creating success! Here's to 10 years of achievements and more to come!"</p>
+                            <cite>- HR Manager</cite>
+                            <i class="fas fa-quote-right quote-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <button class="prev" aria-label="Previous quote"><i class="fas fa-chevron-left"></i></button>
+                    <button class="next" aria-label="Next quote"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="slider-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards" class="section">
+        <div class="container">
+            <h2 class="section-title">Award Distribution</h2>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <img src="images/main-award-to-dp.jpg" alt="Main Award">
+                    <h3>Main Award</h3>
+                    <p>2023</p>
+                </div>
+                <div class="award-card">
+                    <img src="images/award-dis-1.jpg" alt="Award Distribution">
+                    <h3>Award Distribution</h3>
+                    <p>2022</p>
+                </div>
+                <div class="award-card">
+                    <img src="images/award-dis-2.jpg" alt="Award Ceremony">
+                    <h3>Award Ceremony</h3>
+                    <p>2021</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memories Section -->
+    <section id="memories" class="section">
+        <div class="container">
+            <h2 class="section-title">Memories</h2>
+            <div class="memories-grid">
+                <div class="memory-item">
+                    <img src="images/celebration-1.jpg" alt="Celebration Moment">
+                    <div class="memory-caption">Celebration Moment</div>
+                </div>
+                <div class="memory-item">
+                    <img src="images/memories-1.jpg" alt="Special Memory">
+                    <div class="memory-caption">Special Memory</div>
+                </div>
+                <div class="memory-item">
+                    <img src="images/memories-2.jpg" alt="Team Celebration">
+                    <div class="memory-caption">Team Celebration</div>
+                </div>
+                <div class="memory-item">
+                    <img src="images/memories-3.jpg" alt="Achievement Moment">
+                    <div class="memory-caption">Achievement Moment</div>
+                </div>
+                <div class="memory-item">
+                    <img src="images/memories-4.jpg" alt="Leadership in Action">
+                    <div class="memory-caption">Leadership in Action</div>
+                </div>
+                <div class="memory-item">
+                    <img src="images/memories-7.jpg" alt="Conference Highlights">
+                    <div class="memory-caption">Conference Highlights</div>
+                </div>
+                <div class="memory-item">
+                    <img src="images/memoris-8.jpg" alt="Team Retreat">
+                    <div class="memory-caption">Team Retreat</div>
+                </div>
+                <div class="memory-item">
+                    <img src="images/award-dis-10.jpg" alt="Award Ceremony">
+                    <div class="memory-caption">Award Ceremony</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title text-reveal">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="images/friend.jpg" alt="Durga Prasad Sharma">
+                    <div class="experience-badge">10 Years</div>
+                </div>
+                <div class="about-text">
+                    <p class="highlight-text">A lighthouse in the storm, steady and bright, A mentor, a guide, a relentless light. From words to wisdom, from leader to guide, Ten years of strength, standing with pride.</p>
+                    <p>Never the first to leave, nor the last to break, A mind of solutions, a heart that stays awake. With ethics as armor and discipline as sword, He builds, he leads, he sets the accord.</p>
+                    <p>The last to leave, the first to take responsibility—a leader in every sense.</p>
+                    <div class="qualities">
+                        <span>Inspirational</span>
+                        <span>Knowledgeable</span>
+                        <span>Ethical</span>
+                        <span>Disciplined</span>
+                        <span>Dedicated</span>
+                        <span>Honest</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <div class="gallery-section" id="gallery">
+        <!-- Gallery Particles Background -->
+        <div id="gallery-particles"></div>
+        <div class="container">
+            <h2 class="section-title blur-reveal">Photo Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item scroll-zoom delay-100">
+                    <img src="images/award-dis-10.jpg" alt="Award Distribution">
+                </div>
+                <div class="gallery-item scroll-zoom delay-200">
+                    <img src="images/cake-cutting-ceramony-.jpg" alt="Cake Cutting Ceremony">
+                </div>
+                <div class="gallery-item scroll-zoom delay-300">
+                    <img src="images/celebration-1.jpg" alt="Celebration">
+                </div>
+                <div class="gallery-item scroll-zoom delay-400">
+                    <img src="images/memories-1.jpg" alt="Memory 1">
+                </div>
+                <div class="gallery-item scroll-zoom delay-500">
+                    <img src="images/memories-2.jpg" alt="Memory 2">
+                </div>
+                <div class="gallery-item scroll-zoom delay-600">
+                    <img src="images/memories-3.jpg" alt="Memory 3">
+                </div>
+                <div class="gallery-item scroll-zoom delay-700">
+                    <img src="images/memories-4.jpg" alt="Memory 4">
+                </div>
+                <div class="gallery-item scroll-zoom delay-800">
+                    <img src="images/memories-7.jpg" alt="Memory 7">
+                </div>
+                <div class="gallery-item scroll-zoom delay-900">
+                    <img src="images/memoris-8.jpg" alt="Memory 8">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <!-- Footer Wave Effect -->
+        <div class="footer-wave">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#1f2235" fill-opacity="1" d="M0,192L48,202.7C96,213,192,235,288,234.7C384,235,480,213,576,202.7C672,192,768,192,864,213.3C960,235,1056,277,1152,277.3C1248,277,1344,235,1392,213.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+        
+        <div class="footer-content-wrapper">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-info">
+                        <div class="footer-logo">
+                            <h3>Celebrating <span>DP Sir</span></h3>
+                            <div class="anniversary-badge">
+                                <span>10</span>
+                                <p>Years of<br>Excellence</p>
+                            </div>
+                        </div>
+                        <p class="footer-description">
+                            Celebrating a decade of inspiration, dedication, and outstanding leadership.
+                            Thank you for being an extraordinary mentor and guide to us all.
+                        </p>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4><span>Quick</span> Links</h4>
+                        <ul>
+                            <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                            <li><a href="#timeline"><i class="fas fa-history"></i> Timeline</a></li>
+                            <li><a href="#awards"><i class="fas fa-trophy"></i> Awards</a></li>
+                            <li><a href="#memories"><i class="fas fa-images"></i> Memories</a></li>
+                            <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-contact">
+                        <h4><span>Share</span> Celebration</h4>
+                        <p>Spread the joy of this celebration with friends and colleagues!</p>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-divider">
+                    <span><i class="fas fa-star"></i></span>
+                </div>
+                
+                <div class="copyright">
+                    <p>&copy; 2025 Celebrating DP Sir's 10th Anniversary.</p>
+                    <p class="made-with">Made with <i class="fas fa-heart pulse"></i> by <span>Abhay Singh</span></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Check for URL parameters on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const status = urlParams.get('status');
+            const message = urlParams.get('message');
+            
+            if (status && message) {
+                showNotification(message, status);
+                
+                // Remove URL parameters without refreshing
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        });
+        
+        // Show notification function
+        function showNotification(message, status) {
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notification-message');
+            const notificationIcon = document.getElementById('notification-icon');
+            
+            notificationMessage.textContent = message;
+            
+            if (status === 'success') {
+                notification.classList.add('success');
+                notification.classList.remove('error');
+                notificationIcon.className = 'fas fa-check-circle';
+            } else {
+                notification.classList.add('error');
+                notification.classList.remove('success');
+                notificationIcon.className = 'fas fa-exclamation-circle';
+            }
+            
+            notification.classList.add('show');
+            
+            // Auto hide after 5 seconds
+            setTimeout(closeNotification, 5000);
+        }
+        
+        // Close notification function
+        function closeNotification() {
+            const notification = document.getElementById('notification');
+            notification.classList.remove('show');
+        }
+    </script>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            initSite();
+            setupCustomCursor();
+        });
+    </script>
+</body>
+</html> 
